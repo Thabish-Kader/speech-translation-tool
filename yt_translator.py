@@ -1,34 +1,17 @@
-# from pytube import YouTube
-# from googletrans import Translator
-# import ssl
-# import urllib.request
+from moviepy.editor import *
+from googletrans import Translator
 
+# Download YouTube video and extract audio
 
-# # url = input("Enter the YouTube video URL: ")
+audio_filename = "audio.mp3"
+video = VideoFileClip("ss.mp4")
+audio = video.audio
+audio.write_audiofile(audio_filename)
 
-# yt = YouTube("https://youtu.be/_4hVYXTz3Bk")
-# stream = yt.streams.get_highest_resolution()
-# stream.download()
+# Translate audio to German
+translator = Translator()
+audio_text = translator.translate(AudioFileClip(audio_filename).to_soundarray(), dest='de').text
+print(audio_text)
 
-# translator = Translator()
-# captions = yt.captions["en"]
-# captions_text = captions.generate_srt_captions()
-# translated_captions = translator.translate(captions_text, dest='de').text
-
-# with open('translated_captions.txt', 'w', encoding='utf-8') as f:
-#     f.write(translated_captions)
-
-from pytube import YouTube
-
-def Download(link):
-    youtubeObject = YouTube(link)
-    youtubeObject = youtubeObject.streams.get_highest_resolution()
-    try:
-        youtubeObject.download()
-    except:
-        print("An error has occurred")
-    print("Download is completed successfully")
-
-
-link = "https://youtu.be/_4hVYXTz3Bk"
-Download(link)
+# Delete audio file
+os.remove(audio_filename)
