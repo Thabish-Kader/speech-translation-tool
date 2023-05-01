@@ -8,6 +8,13 @@ This is a Python script that allows you to translate spoken English phrases to G
 
 2. Install the required Python packages by running `pip install -r requirements.txt` in the project directory.
 
+## Note
+
+1. You might encounter an error while installing portaudio if you are in mac. To solve the error run `brew install portaudio`
+2. Make sure to install `pip install googletrans==3.1.0a0` version if you use googletrans==3.0.0 you might get an error `AttributeError: 'NoneType' object has no attribute 'group'`
+
+## Useful Resources
+
 -   [SpeechRecognition](https://pypi.org/project/SpeechRecognition/)
 -   [List of languages in SpeechRecognition](https://buildmedia.readthedocs.org/media/pdf/py-googletrans/latest/py-googletrans.pdf)
 -   [GoogleTrans Alpha version](https://stackoverflow.com/questions/52455774/googletrans-stopped-working-with-error-nonetype-object-has-no-attribute-group)
