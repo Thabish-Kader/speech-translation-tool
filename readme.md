@@ -4,6 +4,9 @@ This is a Python script that allows you to translate spoken English phrases to G
 
 ## Installation
 
+Clone this repository to your local machine using `git clone https://github.com/Thabish-Kader/speech-translation-tool`
+Install the required Python packages by running `pip install -r requirements.txt` in the project directory.
+
 -   [SpeechRecognition](https://pypi.org/project/SpeechRecognition/)
 -   [List of languages in SpeechRecognition](https://buildmedia.readthedocs.org/media/pdf/py-googletrans/latest/py-googletrans.pdf)
 -   [GoogleTrans Alpha version](https://stackoverflow.com/questions/52455774/googletrans-stopped-working-with-error-nonetype-object-has-no-attribute-group)
