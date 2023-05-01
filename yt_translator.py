@@ -1,17 +1,28 @@
-from moviepy.editor import *
+import speech_recognition as sr
 from googletrans import Translator
+from gtts import gTTS
+import os
 
-# Download YouTube video and extract audio
+r = sr.Recognizer()
+# get audio from the microphone
+with sr.Microphone() as source:
+    print("Say something!")
+    audio = r.listen(source,timeout=2, phrase_time_limit=5)
+    print("Done")
 
-audio_filename = "audio.mp3"
-video = VideoFileClip("ss.mp4")
-audio = video.audio
-audio.write_audiofile(audio_filename)
-
-# Translate audio to German
-translator = Translator()
-audio_text = translator.translate(AudioFileClip(audio_filename).to_soundarray(), dest='de').text
+# get text from audio
+audio_text = r.recognize_google(audio, language="en-US")
 print(audio_text)
 
-# Delete audio file
-os.remove(audio_filename)
+# List of languages availaible - print(googletrans.LANGUAGES)
+# translate to german
+translator = Translator()
+result = translator.translate(audio_text, dest="de")
+print(result.text)
+
+tts = gTTS(result.text,lang="de",slow=True)
+tts.save("translation.mp3")
+
+# Play the audio file
+os.system("afplay translation.mp3") 
+# os.system("start translation.mp3") - for Windows users 
